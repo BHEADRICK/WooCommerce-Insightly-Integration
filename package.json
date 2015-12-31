@@ -1,0 +1,23 @@
+{
+  "name": "upstoolbox-timeintransit",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:username/project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "find-parent-dir": "^0.3.0",
+    "gulp": "^3.9.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-s3-upload": "*",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.0.2"
+  }
+}
