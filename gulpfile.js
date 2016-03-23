@@ -31,7 +31,7 @@ gulp.task('deploy', function () {
 });
 
 gulp.task('rename', function(){
-
+var findParentDir = require('find-parent-dir');
   var replace = require('gulp-replace');
   var rename = require("gulp-rename");
 // If a name has been passed...

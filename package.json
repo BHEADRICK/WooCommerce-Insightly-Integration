@@ -15,6 +15,7 @@
   "devDependencies": {
     "find-parent-dir": "^0.3.0",
     "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-s3-upload": "*",
     "gulp-util": "^3.0.7",
