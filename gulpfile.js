@@ -31,7 +31,7 @@ gulp.task('deploy', function () {
 });
 
 gulp.task('rename', function(){
-var findParentDir = require('find-parent-dir');
+
   var replace = require('gulp-replace');
   var rename = require("gulp-rename");
 // If a name has been passed...
@@ -48,14 +48,27 @@ console.log({fullname:fullName, classname:className, slug: slug, hookslug:hookSl
     .pipe(replace(/PluginName/g, className))
     .pipe(replace(/plugin-name/g, slug))
       .pipe(rename({
-        dirname:slug,
+
         basename:slug+'.php'}))
       .pipe(gulp.dest("./"));
   }
+
+});
+
+gulp.task('move', function(){
+  // If a name has been passed...
+    if(process.argv[4] !==undefined){
+
+      var fullName = process.argv[4];
+      var className = fullName.replace(/ /g, '');
+      var slug = fullName.toLowerCase().replace(/ /g, '-').replace(/---/g, '-');
+      var hookSlug = fullName.toLowerCase().replace(/ /g, '_');
+  var findParentDir = require('find-parent-dir');
   var fs = require('fs');
         var fulldir = findParentDir.sync(__dirname, '.git');
 
         var basedir = fulldir.split('/').pop();
         var newdir = fulldir.replace(basedir, slug);
         fs.rename(fulldir, newdir);
+      }
 })
