@@ -49,7 +49,7 @@ console.log({fullname:fullName, classname:className, slug: slug, hookslug:hookSl
     .pipe(replace(/plugin-name/g, slug))
       .pipe(rename({
 
-        basename:slug+'.php'}))
+        basename:slug}))
       .pipe(gulp.dest("./"));
   }
 
