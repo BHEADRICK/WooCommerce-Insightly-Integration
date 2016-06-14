@@ -1,0 +1,5 @@
+{
+  "require": {
+    "insightly/insightly-php": "dev-master"
+  }
+}

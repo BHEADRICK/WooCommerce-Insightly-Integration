@@ -16,7 +16,7 @@ Author URI: https://authorurl.com
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+require __DIR__ . '/vendor/autoload.php';
 class WooCommerceInsightlyIntegration {
 
 	/*--------------------------------------------*
