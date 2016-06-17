@@ -104,7 +104,7 @@ class WooCommerceInsightlyIntegration {
 			//$options_panel->addParagraph(__("This is a simple paragraph","apc"));
 			//text field
 
-			$options = 'order_number,billing_first_name,billing_last_name,billing_emailbilling_country,billing_city,billing_state,billing_postcode,payment_method_title,insightly_category';
+			$options = 'order_number,billing_first_name,billing_last_name,billing_email,billing_country,billing_city,billing_state,billing_postcode,payment_method_title,insightly_category';
 			$options_list = '<ul>';
 			foreach(explode(',', $options) as $option){
 				$options_list .= '<li>%'. $option . '%</li>';
