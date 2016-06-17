@@ -1,35 +1,49 @@
-Plugin Boilerplate
+WooCommerce Insightly Integration
 ==========================
 
-This is a basic scaffold for a new WordPress plugin based on the generator found
-at http://wppb.me/
+Creates/updates Opportunity using data from WooCommerce orders when an order is created or saved.
+Creates/updates a contact based on the billing information on the order.
+Links opportunity to contact
+Sets opportunity category and pipeline based on WooCommerce category mappings (also allows for specific product mappings for uncategorized products and a default category.
+Sends order update emails to insightly mailbox (specific to each opportunity)
 
-There is also a gulp action to zip the build files (excluding the dev files), name the zip file as the enclosing folder name, and upload it to an S3 bucket
-
+Different people may want their integration to work differently. So, I'm leaving this as a public repo for others to use as a starting point.
 ##Requirements
 
-npm and gulp should be installed globally
+Composer
 
 ##Installation
 
 After unzipping or cloning, run the following in Terminal (Mac/Linux) or gitbash (Windows):
 
-npm update
+composer update
 
-Then you can run the following to name the plugin:
-
-gulp rename --name="Name of the Plugin"
-
-To also rename the containing folder, you'll also need to run:
-
-gulp move --name="Name of the Plugin"
-
+This will download the Insightly API PHP wrapper
 ##Deploy
 
-To zip up the plugin and upload it to an S3 bucket:
+Zip the plugin folder and upload like any other plugin through the WordPress Dashboard or upload the folder and contents to your wp-content/plugins directory.
 
-Update the gulpfile with your s3 creds and bucket name, and then run:
+##Setup
 
-gulp deploy
+A few items are required before using this.
 
-(The zipped file will be located in the plugins directory)
+The options panel is found under WooCommerce>Insightly
+
+First, you'll need your Insightly API key, found in your Insightly User Settings under "API KEY"
+
+Next, you should set your Opportunity Name Format - you can use placeholders from the order's post meta keys. The most likely used options are displayed:
+
+%order_number%
+%billing_first_name%
+%billing_last_name%
+%billing_email%
+%billing_country%
+%billing_city%
+%billing_state%
+%billing_postcode%
+%payment_method_title%
+%insightly_category%
+
+Finally, you should set your insightly mailbox template. This will vary by account, but is typically something like this {username}-O{opportunity_id}-{account_specific_key}@mailbox.insight.ly
+
+So, generally, navigate to one of the opportunities on the account you want to integrate with, copy the "link email address" and replace the opportunity id with %order_opportunity%
