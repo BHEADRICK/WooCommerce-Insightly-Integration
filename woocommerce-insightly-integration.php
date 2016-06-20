@@ -414,6 +414,10 @@ class WooCommerceInsightlyIntegration {
 		$opportunity['OPPORTUNITY_DETAILS'] =  $description;
 	}
 	function save_order($order_id){
+
+        if($_POST['post_type']!='shop_order'){
+            return;
+        }
 		$order_meta = $this->get_order_meta($order_id);
 
 
@@ -536,6 +540,20 @@ class WooCommerceInsightlyIntegration {
 			'CONTACT_ID'=>$contact_id
 		);
 	}
+
+	function merge_opportunity(&$opportunity){
+
+
+		$current_opp = $this->insightly->getOpportunity($opportunity['OPPORTUNITY_ID']);
+
+		if($current_opp !=null){
+			if(count($current_opp->LINKS)>0){
+				foreach($current_opp->LINKS as $link)
+				$opportunity['LINKS'][] = $link;
+			}
+		}
+
+	}
 	
 	function add_opportunity($opportunity, $order_id){
 
@@ -559,8 +577,11 @@ class WooCommerceInsightlyIntegration {
 
 			if ($opp != null) {
 				$opportunity['OPPORTUNITY_ID'] = $opp->OPPORTUNITY_ID;
+				$this->merge_opportunity($opportunity);
 			}
 
+		}else{
+			$this->merge_opportunity($opportunity);
 		}
 
 
